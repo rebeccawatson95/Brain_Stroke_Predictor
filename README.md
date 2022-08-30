@@ -8,10 +8,10 @@ One of the top 5  leading causes of death today is stroke, according to the CDC.
 
 #### PROCESS:
 1.  Find data source(s)
-2.  Data (ETL) and Data Delivery
+2.  Data (ETL) and Data Delivery:
 * Clean Data
 * Pre-process Data
-2.	Analyze Data
+2.	Analyze Data:
 * Create Model
 * Train the model
 * Test the Model
