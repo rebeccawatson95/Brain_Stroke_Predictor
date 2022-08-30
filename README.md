@@ -10,8 +10,8 @@ One of the top 5  leading causes of death today is stroke, according to the CDC.
 1.  Find data source(s): Kaggle   
         https://www.kaggle.com/datasets/zzettrkalpakbal/full-filled-brain-stroke-dataset
 2.  Data (ETL) and Data Delivery
-        A. Clean Data
-        B. Pre-process Data
+* Clean Data
+* Pre-process Data
 2.	Analyze Data
         A. Create Model
         B. Train the model
