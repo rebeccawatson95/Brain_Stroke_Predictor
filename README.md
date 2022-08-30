@@ -13,8 +13,8 @@ One of the top 5  leading causes of death today is stroke, according to the CDC.
 * Clean Data
 * Pre-process Data
 2.	Analyze Data
-        A. Create Model
-        B. Train the model
+- Create Model
+- Train the model
         C. Test the Model
         D. Optimize the Model
         E. Create a machine learning algorithm
