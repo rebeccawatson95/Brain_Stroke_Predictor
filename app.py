@@ -25,10 +25,10 @@ def survey():
                 values = values + value
             else:
                 values.append(value)
-            print(type(value))
-        print(values)
+            #print(type(value))
+        #print(values)
         input = pd.DataFrame.from_dict({'input':values}, orient="index", columns=keys)
-        print(input.head())
+        #print(input.head())
         return redirect(url_for("results"))
     return render_template("survey.html")
 
