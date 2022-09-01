@@ -2,66 +2,115 @@
 {% block title %}Survey Page{% endblock %}
 
 {% block content %}
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-    <label class="form-check-label" for="inlineRadio1">1</label>
-</div>
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-    <label class="form-check-label" for="inlineRadio2">2</label>
-</div>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-{% enblock %}
+<form method="post">
+    <div class="mb-3">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="0" required>
+            <label class="form-check-label" for="inlineRadio1">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="1" required>
+            <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" name="age" required>
+    </div>
+    <div class="mb-3">
+        <div>Hypertension</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hypertension" id="hypertensionRadio1" value="0" required>
+            <label class="form-check-label" for="hypertensionRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hypertension" id="hypertensionRadio2" value="1" required>
+            <label class="form-check-label" for="hypertensionRadio2">No</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div>Heart Disease</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="heart_disease" id="heart_diseaseRadio1" value="0" required>
+            <label class="form-check-label" for="heart_diseaseRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="heart_disease" id="heart_diseaseRadio2" value="1" required>
+            <label class="form-check-label" for="heart_diseaseRadio2">No</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div>Where you ever married?</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ever_married" id="marriedRadio1" value="0" required>
+            <label class="form-check-label" for="marriedRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ever_married" id="marriedRadio2" value="1" required>
+            <label class="form-check-label" for="marriedRadio2">No</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div>Work Type</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="work_type" id="work_typeRadio1" value="Private" required>
+            <label class="form-check-label" for="work_typeRadio1">Private</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="work_type" id="work_typeRadio2" value="Self-employed" required>
+            <label class="form-check-label" for="work_typeRadio2">Self-employed</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="work_type" id="work_typeRadio3" value="Govt_job" required>
+            <label class="form-check-label" for="work_typeRadio1">Government job</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="work_type" id="work_typeRadio4" value="children" required>
+            <label class="form-check-label" for="work_typeRadio2">Child (Under 16)</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="work_type" id="work_typeRadio5" value="Never_worked" required>
+            <label class="form-check-label" for="work_typeRadio2">Never worked</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div>Residence type</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Residence_type" id="Residence_typeRadio1" value="0" required>
+            <label class="form-check-label" for="Residence_typeRadio1">Urban</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Residence_type" id="Residence_typeRadio2" value="1" required>
+            <label class="form-check-label" for="Residence_typeRadio2">Rural</label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="avg_glucose_level" class="form-label">Average glucose level</label>
+        <input type="number" class="form-control" id="avg_glucose_level" name="avg_glucose_level" required>
+    </div>
+    <div class="mb-3">
+        <label for="bmi" class="form-label">BMI</label>
+        <input type="number" class="form-control" id="bmi" name="bmi" required>
+    </div>
+    <div class="mb-3">
+        <div>Smoking Status</div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="smoking_status" id="smoking_statusRadio1" value="formerly smoked" required>
+            <label class="form-check-label" for="smoking_statusRadio1">Formerly smoked</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="smoking_status" id="smoking_statusRadio2" value="never smoked" required>
+            <label class="form-check-label" for="smoking_statusRadio2">Never smmoked</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="smoking_status" id="smoking_statusRadio3" value="smokes" required>
+            <label class="form-check-label" for="smoking_statusRadio1">Currently smoking</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="smoking_status" id="smoking_statusRadio4" value="Unknown" required>
+            <label class="form-check-label" for="smoking_statusRadio2">Unknown</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
