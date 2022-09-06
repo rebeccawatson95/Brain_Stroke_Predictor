@@ -18,16 +18,17 @@ def survey():
         # pd.DataFrame(request.form.values(), columns=request.form.keys())
         # pd.head()
         values = []
-        keys = ['gender', 'age', 'hypertension', 'heart_disease', 'avg_glucose_level', 'bmi', 'ever_married', 'work_type_Govt_job', 'work_type_Never_worked', 'work_type_Private', 'work_type_Self-employed', 'work_type_children', 'Residence_type', 'smoking_status_Unknown', 'smoking_status_formerly smoked', 'smoking_status_never smoked', 'smoking_status_smokes']
+        keys = ['gender', 'age', 'hypertension', 'heart_disease', 'ever_married', 'work_type_Private', 'work_type_Self-employed', 'work_type_Govt_job', 'work_type_children', 'work_type_Never_worked', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status_formerly smoked', 'smoking_status_Unknown', 'smoking_status_never smoked', 'smoking_status_smokes']
         for value in request.form.values():
             value = literal_eval(value)
             if isinstance(value, list):
                 values = values + value
             else:
                 values.append(value)
-            print(type(value))
-        print(values)
-        pd.DataFrame(values, columns=keys)
+            #print(type(value))
+        #print(values)
+        input = pd.DataFrame.from_dict({'input':values}, orient="index", columns=keys)
+        #print(input.head())
         return redirect(url_for("results"))
     return render_template("survey.html")
 
