@@ -1,15 +1,38 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, redirect, flash
+import pandas as pd
+from ast import literal_eval
 
 app = Flask(__name__)
 
+
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def home():
+    return render_template("home.html")
 
-@app.route("survey")
+
+@app.route("/survey", methods=("GET", "POST"))
 def survey():
-    return "<p>survey go here<p>"
+    if request.method == "POST":
+        # print(request.to_dict())
+        # print(request.form.values())
+        # pd.DataFrame(request.form.values(), columns=request.form.keys())
+        # pd.head()
+        values = []
+        keys = ['gender', 'age', 'hypertension', 'heart_disease', 'ever_married', 'work_type_Private', 'work_type_Self-employed', 'work_type_Govt_job', 'work_type_children', 'work_type_Never_worked', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status_formerly smoked', 'smoking_status_Unknown', 'smoking_status_never smoked', 'smoking_status_smokes']
+        for value in request.form.values():
+            value = literal_eval(value)
+            if isinstance(value, list):
+                values = values + value
+            else:
+                values.append(value)
+            #print(type(value))
+        #print(values)
+        input = pd.DataFrame.from_dict({'input':values}, orient="index", columns=keys)
+        #print(input.head())
+        return redirect(url_for("results"))
+    return render_template("survey.html")
 
-@app.route("results")
+
+@app.route("/results")
 def results():
     return "<p>results go here<p>"
