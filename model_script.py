@@ -1,74 +1,87 @@
 # Dependencies
-import numpy as np
 import pandas as pd
-
+import sqlite3
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from imblearn.over_sampling import RandomOverSampler
+from sklearn.tree import DecisionTreeClassifier
 
-# Reading in data
-df = pd.read_csv('Resources/healthcare-dataset-stroke-data.csv')
-df.head()
+# Creating machine learning model
+def make_model():
 
-# Removing outlier values in 'gender' column, converting to numerical values
-df = df[df['gender'] != 'Other']
-df.gender = df.gender.replace({'Male':0, 'Female':1})
+    # Reading in data from sqlite
+    con = sqlite3.connect('Resources/stroke_prediction_data.sqlite')
+    data = pd.read_sql('SELECT * FROM stroke_prediction_data', con)
+    data = data.drop('index', axis=1)
+    #print(data.dtypes)
 
-# Removing the 'id' column
-df = df.drop('id', axis=1)
+    # Separating target values from features
+    y = data['Stroke']
+    X = data.drop('Stroke', axis=1).values
 
-# Converting other binary data points into numerical values
-df.ever_married = df.ever_married.replace({'No':0, 'Yes':1})
-df.Residence_type = df.Residence_type.replace({'Urban':0, 'Rural':1})
+    # Splitting data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 
-# Filling in missing values from 'bmi' column, using a decision tree model that predicts the missing values
-# Code originally written by Thomas Konstantin
-DT_bmi_pipe = Pipeline(steps=[ 
-                               ('scale',StandardScaler()),
-                               ('lr',DecisionTreeRegressor(random_state=1))
-                              ])
-X_bmi = df[['age','gender','bmi']].copy()
+    # Setting up StandardScaler
+    scaler = StandardScaler()
 
-Missing = X_bmi[X_bmi.bmi.isna()]
-X_bmi = X_bmi[~X_bmi.bmi.isna()]
-y_bmi = X_bmi.pop('bmi')
-DT_bmi_pipe.fit(X_bmi,y_bmi)
-predicted_bmi = pd.Series(DT_bmi_pipe.predict(Missing[['age','gender']]),index=Missing.index)
-df.loc[Missing.index,'bmi'] = predicted_bmi
+    # Fitting training data
+    X_scaler = scaler.fit(X_train)
 
-# Converting dataset into numerical values
-df_num = pd.get_dummies(df)
-df_num.shape
+    # Scale the data
+    X_train_scaled = X_scaler.transform(X_train)
+    X_test_scaled = X_scaler.transform(X_test)
 
-# Upsampling data so the dataset is not skewed towards 'no stroke' values
-y = df_num['stroke']
-X = df_num.drop('stroke', axis=1)
+    # Creating decision tree model
+    dtc_pipe = Pipeline(steps=[('scale',StandardScaler()),('DT',DecisionTreeClassifier(random_state=1))])
+    dtc_pipe = dtc_pipe.fit(X_train_scaled, y_train)
 
-ros = RandomOverSampler(random_state=1)
-X_resampled, y_resampled = ros.fit_resample(X, y)
-ros_df = X_resampled.assign(Stroke = y_resampled)
+    # Testing for functionality
+    #if dtc_pipe.score(X_test_scaled, y_test) > 0:
+        #score = 'test'
+    #return score
 
-# Splitting data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, random_state=1)
+    sample = [1,49.0,0,0,1,0,171.23,34.400000,0,0,1,0,0,0,0,0,1]
+    keys = ['gender', 'age', 'hypertension', 'heart_disease', 'ever_married',
+       'Residence_type', 'avg_glucose_level', 'bmi', 'work_type_Govt_job',
+       'work_type_Never_worked', 'work_type_Private',
+       'work_type_Self-employed', 'work_type_children',
+       'smoking_status_Unknown', 'smoking_status_formerly smoked',
+       'smoking_status_never smoked', 'smoking_status_smokes']
+    nsample = pd.DataFrame(columns=keys)
+    nsample.loc[0] = sample
+    #print(dtc_pipe.predict(nsample))
 
-# Setting up StandardScaler
-scaler = StandardScaler()
+    #dict = {'dtc_pipe': dtc_pipe, 'X_scaler': X_scaler}
 
-# Fitting training data
-X_scaler = scaler.fit(X_train)
+    # Return model
+    return dtc_pipe
 
-# Scale the data
-X_train_scaled = X_scaler.transform(X_train)
-X_test_scaled = X_scaler.transform(X_test)
+    #pred = dtc_pipe.predict(input)
+    #output = str(pred[0])
+    #return output
 
-# Creating decision tree model
-dtc_pipe = Pipeline(steps=[('scale',StandardScaler()),('DT',DecisionTreeClassifier(random_state=1))])
-dtc_pipe.fit(X_train_scaled, y_train)
-print('Test Acc: %.3f' % dtc_pipe.score(X_test_scaled, y_test))
+def scale_input(input):
 
-# Classification report for Decision Tree Classifier model
-dtcpred = dtc_pipe.predict(X_test_scaled)
-print(classification_report(y_test, dtcpred, target_names=['no_stroke','stroke']))
+    # Reading in data from sqlite
+    con = sqlite3.connect('Resources/stroke_prediction_data.sqlite')
+    data = pd.read_sql('SELECT * FROM stroke_prediction_data', con)
+    data = data.drop('index', axis=1)
+    #print(data.dtypes)
+
+    # Separating target values from features
+    y = data['Stroke']
+    X = data.drop('Stroke', axis=1).values
+
+    # Splitting data into training and testing sets
+    #X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
+
+    # Setting up StandardScaler
+    scaler = StandardScaler()
+
+    # Fitting training data
+    X_scaler = scaler.fit(X)
+
+    input_scaled = X_scaler.transform(input)
+
+    return input_scaled
