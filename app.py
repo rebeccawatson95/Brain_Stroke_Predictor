@@ -4,10 +4,6 @@ import pandas as pd
 from ast import literal_eval
 import model_script
 
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeClassifier
-
 
 app = Flask(__name__)
 
