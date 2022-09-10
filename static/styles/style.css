@@ -1,25 +1,29 @@
 .img-logo {
   width: 100%;
   height: auto;
+  vertical-align: middle;
 }
 .navbar-brand{
-    background:rgb(222 199 247);
+    background:rgb(128 110 212);
     padding: 15px 32px;
     border-radius: 10px;
  
 }
 .description{
+    margin-top: 40px;
+    margin-bottom: 40px;
     font-size: 40px;
-    background: rgb(174 197 255);
+    border: 4px solid rgb(109, 79, 196);
     padding: 15px 15px;
     border-radius: 10px;
+    text-align: center;
 
 }
 .navbar-toggler{
-    background:rgb(222 199 247);
+    background:rgb(114 93 207);
 }
 .btn-primary{
-    background:rgb(85 133 240);
+    background:rgb(109 79 196);
     border-radius: 10px
 }
 .cdc-logo{
@@ -27,5 +31,25 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
-
+.cdc-info{
+    margin-top: 100px;
+}
+.container{
+    background: rgb(210, 201, 250);
+}
+.img-span{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.btn-calculate{
+    font-size: 60px;
+}
+body{
+    background: rgb(210, 201, 250)
+}
+form{
+    margin-top: 40px;
+}
