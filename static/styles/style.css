@@ -1,6 +1,3 @@
-.container {
-    background: rgb(174 197 255);
-}
 .img-logo {
   width: 100%;
   height: auto;
@@ -11,8 +8,12 @@
     border-radius: 10px;
  
 }
-.col-8{
+.description{
     font-size: 40px;
+    background: rgb(174 197 255);
+    padding: 15px 15px;
+    border-radius: 10px;
+
 }
 .navbar-toggler{
     background:rgb(222 199 247);
@@ -20,5 +21,11 @@
 .btn-primary{
     background:rgb(85 133 240);
     border-radius: 10px
+}
+.cdc-logo{
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
