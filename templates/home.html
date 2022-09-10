@@ -2,25 +2,35 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<div class="row gx-6">
+<div class="row">
     <div class="col-8">
-        <p class="description">One of the top 5  leading causes of death today is stroke, according to the CDC. It is important to know and understand how different health concerns might impact the probability of having a stroke. This model which will allow you to predict the likelihood of having a stroke based on input parameters. Click the button below to get started!</p>
+        <p class="description">One of the top 5 leading causes of death today is stroke, according to the CDC. It is
+            important to know and understand how different health concerns might impact the probability of having a
+            stroke. This model which will allow you to predict the likelihood of having a stroke based on input
+            parameters. Click the button below to get started!</p>
     </div>
     <div class="col-4">
-        <a href="https://www.cdc.gov/dhdsp/maps/national_maps/stroke_all.htm" target="_blank"><img src="https://www.cdc.gov/dhdsp/maps/images/stroke_all.jpg" class="img-logo"></a>
+        <a href="https://www.cdc.gov/dhdsp/maps/national_maps/stroke_all.htm" target="_blank"><span
+                class="img-span"></span><img src="https://www.cdc.gov/dhdsp/maps/images/stroke_all.jpg"
+                class="img-logo"></a>
     </div>
 </div>
 <div class="row">
-    <a role="button" class="btn btn-primary btn-lg" href="/survey">Calulate Stroke Chance</a>
+    <a role="button" class="btn btn-primary btn-lg btn-calculate" href="/survey">CALCULATE STROKE CHANCE</a>
 </div>
-<div class="row gx-4">
-    <div class="col-12">
-        <a href="https://www.cdc.gov/stroke/facts.htm" target="_blank"><img src="https://www.cdc.gov/about/images/leadership/cdc-socialmedia-600x300px.jpg?_=54419" class="cdc-logo"></a>
+<div class="cdc-info">
+    <div class="row">
+        <div class="col-12">
+            <a href="https://www.cdc.gov/stroke/facts.htm" target="_blank"><img
+                    src="https://www.cdc.gov/about/images/leadership/cdc-socialmedia-600x300px.jpg?_=54419"
+                    class="cdc-logo"></a>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <p class="text-center">Click on the CDC logo to learn more about strokes; including facts, statistics, and risks.</p>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">Click on the CDC logo to learn more about strokes; including facts, statistics, and
+                risks.</p>
+        </div>
     </div>
 </div>
 {% endblock %}
