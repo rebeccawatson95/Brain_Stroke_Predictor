@@ -63,8 +63,8 @@ def scale_input(input):
     #print(data.dtypes)
 
     # Separating feature values
-    y = data['Stroke']
-    X = data.drop('Stroke', axis=1).values
+    y = data['stroke']
+    X = data.drop('stroke', axis=1).values
 
     # Splitting data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)

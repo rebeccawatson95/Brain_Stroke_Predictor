@@ -10,6 +10,8 @@ app = Flask(__name__)
 # Creating machine learning model
 model = model_script.make_model()
 
+r = False
+res = ''
 
 @app.route("/")
 def home():
@@ -18,6 +20,9 @@ def home():
 
 @app.route("/survey", methods=("GET", "POST"))
 def survey():
+
+    r = False
+    res = ''
     if request.method == "POST":
         # print(request.to_dict())
         # print(request.form.values())
@@ -44,12 +49,21 @@ def survey():
 
         scaled = model_script.scale_input(input)
         pred = model.predict(scaled)
-        res = f'Your prediction is: {pred[0]}'
-        print(res)
-        return res
+        r = True
+
+        if pred[0] == 0:
+            res = 'You are not likely to have a stroke'
+        else:
+            res = 'You are likely to have a stroke'
+            
+        #res = f'Your prediction is: {pred[0]}'
+        #print(res)
+        
+        return render_template("survey.html", show_example_modal=r, res=res)
 
         #return redirect(url_for("results", pred=pred))
-    return render_template("survey.html")
+    
+    return render_template("survey.html", show_example_modal=r, res=res)
 
 
 if __name__ == '__main__':
